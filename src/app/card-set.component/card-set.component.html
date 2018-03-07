@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-header>
+
+  </mat-card-header>
+  <mat-card-content>
+    <button mat-button (click)="NewSet()" *ngIf="!newSet">Add new Set</button>
+    <form *ngIf="newSet" [formGroup]="form" (submit)="Submit(form.value)">
+      <mat-form-field style="width: 50%;">
+        <input matInput type="text" placeholder="Title" formControlName="title">
+      </mat-form-field>
+      <button mat-button>Create</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let s of sets"><span routerLink="cardset/{{s.id}}" style="cursor: pointer;">{{s.title}}</span> <span class="pull-right"><span (click)="EditSet(s)" style="cursor: pointer;"><i class="fas fa-pencil-alt"></i></span><span (click)="DeleteSet(s.id)" style="cursor: pointer;"><i class="fas fa-trash-alt"></i></span></span></mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

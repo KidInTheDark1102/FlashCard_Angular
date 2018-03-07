@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+
+.pull-right { position: absolute; right: 20px; }
+
+svg { margin:0 10px 0 10px; cursor: pointer; }
+
