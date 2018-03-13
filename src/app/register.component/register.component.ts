@@ -15,7 +15,8 @@ export class RegisterComponent implements OnInit {
       first: this._fb.control('', Validators.required),
       last: this._fb.control('', Validators.required),
       email: this._fb.control('', Validators.required),
-      password: this._fb.control('', Validators.required)
+      password: this._fb.control('', Validators.required),
+      repassword: this._fb.control('', Validators.required)
     });
   }
 }

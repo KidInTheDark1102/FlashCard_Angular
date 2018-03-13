@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Card sets: </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let s of cardSets">
+        <span (click)="showSetting(s.id)" style="cursor: pointer;"><i class="material-icons">play_arrow</i>  {{s.title}} </span>
+      </mat-list-item>
+      <mat-list-item *ngIf="!cardSets||cardSets.length==0">No sets found!</mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

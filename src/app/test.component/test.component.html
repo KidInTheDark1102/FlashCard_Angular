@@ -1,0 +1,51 @@
+<mat-spinner *ngIf="!set||!cards"></mat-spinner>
+<section *ngIf="set">
+  <div class="card" *ngIf="isWelcome">
+    <button (click)="openSetting()" style="position: absolute; left: 20px; top: 20px;">Setting</button>
+    <h4>Card Set: {{set.title}}</h4>
+    <h6>Number of Cards: {{this.cards.length()}} cards</h6>
+    <div *ngIf="options.isStepper"><input type="checkbox" [(ngModel)]="options.isLinear"> Play Cards Linearly</div>
+    <button (click)="start()">Start</button>
+  </div>
+  <div *ngIf="!isWelcome">
+    <div *ngIf="options.addIncorrect">
+      <div *ngIf="options.isStepper">
+        <app-stepper-add-incorrect></app-stepper-add-incorrect>
+      </div>
+      <div *ngIf="!options.isStepper">
+        add incorrect, not stepper
+      </div>
+    </div>
+    <div *ngIf="!options.addIncorrect">
+      <div *ngIf="options.isStepper">
+        <mat-vertical-stepper [linear]="options.isLinear">
+          <mat-step *ngFor="let card of cards.Value, let i = index">
+            <div class="card">
+              <h3>{{card.question}}</h3>
+              <p *ngIf="peek">{{card.answer}}</p>
+              <button mat-button (click)="Peek()" style="background-color: darkgreen;">Peek</button>
+              <div style="position: absolute; left: 10px; bottom: 10px;">
+                <button mat-button (click)="again(i)">Learn Again!</button>
+                <button matStepperNext mat-button (click)="skip()">Done!</button>
+              </div>
+            </div>
+          </mat-step>
+          <mat-step>
+            <button mat-button (click)="result()">Result</button>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
+
+      <div *ngIf="!options.isStepper">
+
+      </div>
+    </div>
+
+
+  </div>
+
+  <button mat-button (click)="previousCard()" [disabled]="pageIndex==0"><i class="material-icons">navigate_before</i></button>
+  <span> {{pageIndex + 1}}/{{cards.length()}} </span>
+  <button mat-button (click)="nextCard()" [disabled]="pageIndex==cards.length()-1"><i class="material-icons">navigate_next</i></button>
+</section>
+

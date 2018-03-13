@@ -14,7 +14,7 @@ export class ApiService {
   }
 
   getCards(setId) {
-    return this.http.get(this.baseUrl + `/cards/set/` + setId);
+    return this.http.get<Array<any>>(this.baseUrl + `/cards/set/` + setId);
   }
 
   postCards(card) {

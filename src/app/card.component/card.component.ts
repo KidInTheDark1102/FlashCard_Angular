@@ -1,7 +1,8 @@
 import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {ApiService} from '../../services/api.service';
-import {MatSnackBar} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
+import {EditDialogComponent} from '../dialogs.component/dialogs.component';
 
 @Component({
   selector: 'app-card',
@@ -14,7 +15,8 @@ export class CardComponent implements OnInit {
   questions;
   cardSet;
 
-  constructor(@Inject(ApiService) private api, private snackBar: MatSnackBar, private route: ActivatedRoute) {
+  constructor(@Inject(ApiService) private api, private snackBar: MatSnackBar, private route: ActivatedRoute,
+              private dialog: MatDialog) {
     this.newCard = false;
     this.question = {};
   }
@@ -84,4 +86,18 @@ export class CardComponent implements OnInit {
       this.newCard = false;
     });
   }
+
+  EditSet(set) {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      data: {title: set.title}
+    });
+    const self = this;
+    dialogRef.afterClosed().subscribe(result => {
+      set.title = result;
+      this.api.updateSet(set).subscribe(response => {
+      });
+    });
+  }
 }
+
+

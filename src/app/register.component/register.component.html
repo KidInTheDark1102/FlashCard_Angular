@@ -20,6 +20,10 @@
         <input type="password" matInput placeholder="password" formControlName="password">
       </mat-form-field>
       <br>
+      <mat-form-field>
+        <input type="password" matInput placeholder="retype-password" formControlName="repassword">
+      </mat-form-field>
+      <br>
       <button mat-button [disabled]="!form.valid">Register</button>
     </form>
   </mat-card-content>
