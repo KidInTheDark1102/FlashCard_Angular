@@ -3,8 +3,9 @@ import {SettingHolderService} from '../../services/setting-holder.service';
 import {MatDialog} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiService} from '../../services/api.service';
-import {ErrorComponent, PopupOptionComponent, ResultDialogComponent} from '../dialogs.component/dialogs.component';
+import {PopupOptionComponent, ResultDialogComponent} from '../dialogs.component/dialogs.component';
 import {List} from '../../Infrastructure/List';
+import {Options} from '../../Infrastructure/Options';
 
 @Component({
   selector: 'app-test',
@@ -16,7 +17,6 @@ export class TestComponent implements OnInit {
   isWelcome;
   options;
 
-  pageIndex;
   peek;
   cardsPlayed;
 
@@ -43,7 +43,6 @@ export class TestComponent implements OnInit {
         });
       });
     });
-    this.pageIndex = 0;
   }
 
   openSetting() {
@@ -58,15 +57,14 @@ export class TestComponent implements OnInit {
 
   start() {
     this.isWelcome = false;
-    this.api.getCards(this.set.id).subscribe(response => {
-      if (this.options.isRandom) {
+    if (this.options.isRandom) {
+      this.api.getCards(this.set.id).subscribe(response => {
         this.cards = new List<any>();
         while (response.length > 0) {
           this.cards.addToRandomIndex(0, this.cards.length(), response.pop());
         }
-      }
-    });
-    console.log(this.cards);
+      });
+    }
   }
 
   Peek(value) {
@@ -88,18 +86,10 @@ export class TestComponent implements OnInit {
     this.cardsPlayed++;
   }
 
-  previousCard() {
-    this.pageIndex--;
-  }
-
-  nextCard() {
-    this.pageIndex++;
-  }
-
   result() {
     const score = Math.floor(this.cards.length() / this.cardsPlayed * 100);
     const dialogRef = this.dialog.open(ResultDialogComponent, {
-      data: {value: score, numberCards: this.cards.length(), total: this.cardsPlayed, cardSetId: this.set.id},
+      data: {value: score, total: this.cards.length(), played: this.cardsPlayed, cardSetId: this.set.id},
       width: '600px',
       height: '400px'
     });
@@ -116,53 +106,7 @@ export class TestComponent implements OnInit {
     {{card.question}}
   </div>`
 })
-
-
 export class TestCardComponent {
   @Input() card;
 }
 
-export class Options {
-  private _isLinear: boolean;
-  private _isRandom: boolean;
-  private _addIncorrect: boolean;
-  private _isStepper: boolean;
-
-  constructor() {
-    this._isLinear = false;
-    this._isRandom = false;
-    this._addIncorrect = false;
-    this._isStepper = false;
-  }
-  get isLinear() {
-    return this._isLinear;
-  }
-
-  set isLinear(value) {
-    this._isLinear = value;
-  }
-
-  get isRandom() {
-    return this._isRandom;
-  }
-
-  set isRandom(value) {
-    this._isRandom = value;
-  }
-
-  get addIncorrect() {
-    return this._addIncorrect;
-  }
-
-  set addIncorrect(value) {
-    this._addIncorrect = value;
-  }
-
-  get isStepper() {
-    return this._isStepper;
-  }
-
-  set isStepper(value) {
-    this._isStepper = value;
-  }
-}

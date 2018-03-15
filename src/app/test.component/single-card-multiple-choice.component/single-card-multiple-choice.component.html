@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="full-width">
+    {{cardList.get(index).Question}}
+  </div>
+  <div class="full-width">
+    <mat-radio-group [(ngModel)]="cardList.get(index).SelectedAnswer">
+      <mat-radio-button *ngFor="let answer of cardList.get(index).Answers" [value]="answer" class="full-width">{{answer}}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div>
+  </div>
+  <div style="position: absolute; bottom: 5px; left: 5px">
+    <div *ngIf="index < cards.Value.length -1">
+      <button mat-raised-button color="primary" (click)="nextCard()">Done!</button>
+      {{index + 1}} / {{cards.Value.length}}
+    </div>
+    <div *ngIf="!(index < cards.Value.length - 1)">
+      <button mat-raised-button (click)="showResult()" color="primary">Result</button>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 40px">
+  <hr>
+</div>
+
+

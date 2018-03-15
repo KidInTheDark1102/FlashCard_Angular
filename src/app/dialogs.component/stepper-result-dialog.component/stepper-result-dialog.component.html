@@ -1,0 +1,32 @@
+<mat-grid-list cols="4">
+  <mat-grid-tile [colspan]="2">
+    {{score}} %
+    <mat-progress-spinner [value]="score">
+    </mat-progress-spinner>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2">
+    Total: {{data.total}} <br>
+    Corrects: {{data.total - data.incorrectCards.length()}}
+  </mat-grid-tile>
+</mat-grid-list>
+
+<h4>
+  Missed Cards:
+</h4>
+<mat-list>
+  <div *ngFor="let item of data.incorrectCards.Value">
+    <mat-list-item>
+      Question:
+      <div class="question"> {{item.Question}}</div>
+    </mat-list-item>
+    <mat-list-item>
+      <div class="incorrect_answer">You chose: {{item.SelectedAnswer}}</div>
+    </mat-list-item>
+    <mat-list-item>
+      <div class="correct_answer">Correct Answer: {{item.CorrectAnswer}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </div>
+</mat-list>
+
+

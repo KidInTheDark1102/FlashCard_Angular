@@ -6,6 +6,7 @@ import {
   MatSnackBarModule, MatDividerModule, MatListModule, MatDialogModule, MatStepperModule, MatPaginatorModule,
   MatIconRegistry,
   MatProgressSpinnerModule,
+  MatRadioModule,
   MatGridListModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -29,6 +30,9 @@ import {
   ResultDialogComponent
 } from './dialogs.component/dialogs.component';
 import {StepperAddIncorrectComponent} from './test.component/stepper-add-incorrect.component/stepper-add-incorrect.component';
+import {MultipleChoiceStepperResultDialogComponent} from './dialogs.component/stepper-result-dialog.component/multiple-choice-stepper-result-dialog.component';
+import {SingleCardTestComponent} from './test.component/single-card.component/single-card.component';
+import {SingleCardMultipleChoiceComponent} from './test.component/single-card-multiple-choice.component/single-card-multiple-choice.component';
 
 const routes = [
   {path: '', component: TestBoardComponent},
@@ -57,13 +61,17 @@ const routes = [
     ResultDialogComponent,
     InformationComponent,
     StepperAddIncorrectComponent,
+    MultipleChoiceStepperResultDialogComponent,
+    SingleCardTestComponent,
+    SingleCardMultipleChoiceComponent,
   ],
   entryComponents: [
     EditDialogComponent,
     ErrorComponent,
     PopupOptionComponent,
     ResultDialogComponent,
-    InformationComponent
+    InformationComponent,
+    MultipleChoiceStepperResultDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +92,8 @@ const routes = [
     MatStepperModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatGridListModule
+    MatGridListModule,
+    MatRadioModule
   ],
   providers: [ApiService, AuthService,
     SettingHolderService, MatIconRegistry,

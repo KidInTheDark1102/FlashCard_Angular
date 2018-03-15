@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="full-width">
+    {{cards.get(index).question}}
+  </div>
+  <div class="full-width" *ngIf="peek">
+    {{cards.get(index).answer}}
+  </div>
+  <div>
+    <button mat-raised-button color="accent" (click)="peek = true">Peek</button>
+  </div>
+  <div style="position: absolute; bottom: 5px;">
+    <div *ngIf="index < cards.length() -1">
+      <button mat-raised-button color="primary" (click)="learnAgain(cards.get(index))">Learn Again!</button>
+      <button mat-raised-button color="primary" (click)="nextCard()">Done!</button>
+      {{index + 1}} / {{cards.length()}}
+    </div>
+    <div *ngIf="!(index < cards.length() - 1)">
+      <button mat-raised-button color="primary" (click)="showResult()">Result</button>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 40px">
+  <hr>
+</div>
+
+

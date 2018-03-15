@@ -1,0 +1,14 @@
+<mat-vertical-stepper [linear]="true">
+  <mat-step *ngFor="let card of cardList.Value">
+    <h3>{{card.Question}}</h3>
+    <mat-radio-group [(ngModel)]="card.SelectedAnswer">
+      <mat-radio-button class="full-width" *ngFor="let answer of card.Answers" value="{{answer}}">
+        {{answer}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <button mat-raised-button matStepperNext>Next</button>
+  </mat-step>
+  <mat-step>
+    <button mat-raised-button color="primary" (click)="showResult()">Result</button>
+  </mat-step>
+</mat-vertical-stepper>

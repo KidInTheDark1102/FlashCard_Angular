@@ -18,8 +18,8 @@ export class List<T> {
     this.item.push(value);
   }
 
-  get(index: number) {
-
+  get(index: number): T {
+    return this.item[index];
   }
 
   pop(): T {

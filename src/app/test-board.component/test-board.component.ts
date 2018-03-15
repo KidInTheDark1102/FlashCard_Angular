@@ -28,7 +28,6 @@ export class TestBoardComponent implements OnInit {
   showSetting (id) {
     const dialogRef = this.dialog.open(PopupOptionComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result) {
         this.router.navigate([`test/${id}`]);
       }

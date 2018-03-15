@@ -87,8 +87,8 @@ export class EditDialogComponent {
           </mat-progress-spinner>
         </mat-grid-tile>
         <mat-grid-tile>
-           Total cards: {{data.numberCards}}
-          Cards replay: {{data.total - data.numberCards}}
+           Total cards: {{data.total}}
+          Cards replay: {{data.played - data.total}}
         </mat-grid-tile>
         <mat-grid-tile colspan="2">
           <button mat-button (click)="closeDialog()">Done</button>

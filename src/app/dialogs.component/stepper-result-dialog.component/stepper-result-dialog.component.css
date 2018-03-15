@@ -1,0 +1,15 @@
+.mat-list {
+  margin-top: 20px;
+}
+
+.question {
+
+}
+
+.incorrect_answer {
+  color: red;
+}
+
+.correct_answer {
+  color: blue;
+}
